@@ -12,7 +12,9 @@ dist
 dist/*
 dist-ssr
 *.local
+yarn.lock
 package-lock.json
+.npmrc
 
 # Editor directories and files
 .vscode/*

@@ -1,7 +1,7 @@
 {
 	"name": "@trosvald/docusaurus-theme",
-	"version": "0.0.1",
-	"description": "A collection of components and style overrides for Docusaurus pages in trosvald projects",
+	"version": "1.0.0",
+	"description": "A collection of components and style overrides for Docusaurus pages in monosense projects",
 	"private": false,
 	"type": "module",
 	"main": "dist/trosvald-docusaurus-theme.js",
@@ -20,6 +20,11 @@
 	},
 	"devDependencies": {
 		"@infinum/eslint-plugin": "^1.0.0",
+		"@semantic-release/changelog": "^6.0.3",
+		"@semantic-release/commit-analyzer": "^13.0.0",
+		"@semantic-release/git": "^10.0.1",
+		"@semantic-release/npm": "^12.0.1",
+		"@semantic-release/release-notes-generator": "^14.0.1",
 		"@types/react": "^18.0.37",
 		"@types/react-dom": "^18.0.11",
 		"@typescript-eslint/utils": "^5.61.0",
@@ -31,6 +36,7 @@
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"postcss-import": "^15.1.0",
 		"postcss-nesting": "^11.3.0",
+		"semantic-release": "^24.1.2",
 		"tailwindcss": "^3.3.2",
 		"vite": "^4.3.9"
 	},
@@ -42,6 +48,7 @@
 		"dist"
 	],
 	"publishConfig": {
+		"access": "public",
 		"registry": "https://npm.pkg.github.com"
 	},
 	"repository": {
@@ -57,5 +64,36 @@
 	"bugs": {
 		"url": "https://github.com/trosvald/docusaurus-theme/issues"
 	},
-	"homepage": "https://github.com/trosvald/docusaurus-theme#readme"
+	"homepage": "https://github.com/trosvald/docusaurus-theme#readme",
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	},
+	"release": {
+		"repositoryUrl": "https://github.com/trosvald/docusaurus-theme",
+		"debug": true,
+		"plugins": [
+			"@semantic-release/commit-analyzer",
+			"@semantic-release/release-notes-generator",
+			"@semantic-release/npm",
+			"@semantic-release/github",
+			[
+				"@semantic-release/changelog",
+				{
+					"changelogFile": "CHANGELOG.md"
+				}
+			],
+			[
+				"@semantic-release/git",
+				{
+					"assets": ["package.json", "package-lock.json", "CHANGELOG.md"],
+					"message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+				}
+			]
+		],
+		"branches": [
+			"main"
+		]
+	}
 }
