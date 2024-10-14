@@ -29,7 +29,10 @@ jobs:
           scope: "@trosvald"
           # this value only needed if we run on selfhosted runner
           cache: "yarn"
-      
+
+      - name: Install Production Node Dependencies
+        run: corepack yarn install
+
       - name: Install dependencies
         run: yarn
       
