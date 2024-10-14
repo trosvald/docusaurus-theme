@@ -10,7 +10,7 @@ permissions:
 jobs:
   release:
     name: Release
-    runs-on: ubuntu-latest
+    runs-on: gha-runner-docusaurus-theme
     permissions:
       contents: write
       issues: write
